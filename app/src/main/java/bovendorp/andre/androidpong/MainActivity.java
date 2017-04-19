@@ -1,4 +1,4 @@
-package com.example.developer.particles;
+package bovendorp.andre.androidpong;;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

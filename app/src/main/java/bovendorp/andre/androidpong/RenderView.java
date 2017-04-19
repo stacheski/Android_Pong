@@ -1,4 +1,4 @@
-package com.example.developer.particles;
+package bovendorp.andre.androidpong;
 
 import android.content.Context;
 import android.graphics.Canvas;

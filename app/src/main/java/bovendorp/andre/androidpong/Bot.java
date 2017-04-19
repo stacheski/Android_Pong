@@ -1,4 +1,4 @@
-package com.example.developer.particles;
+package bovendorp.andre.androidpong;
 
 /**
  * Created by developer on 17/04/17.
