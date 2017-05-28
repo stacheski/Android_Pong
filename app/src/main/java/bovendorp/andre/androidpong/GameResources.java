@@ -31,6 +31,15 @@ public class GameResources {
         gameObjectsList.add(obj);
     }
 
+    public GameObject get(String s){
+        for(GameObject g: gameObjectsList){
+            if(g.id.equals(s)){
+                return g;
+            }
+        }
+        return null;
+    }
+
     public void removeObjject(GameObject obj){
         gameObjectsList.remove(obj);
     }

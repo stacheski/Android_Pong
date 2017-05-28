@@ -8,7 +8,7 @@ public class Bot extends Player {
     GameObject reference;
     int speed;
     public Bot(int posx, int posy, GameObject reference){
-        super(posx, posy);
+        super(posx, posy, 1);
         this.reference = reference;
     }
 

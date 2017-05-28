@@ -4,6 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import java.util.Random;
+
 /**
  * Created by developer on 17/04/17.
  */
@@ -23,7 +25,8 @@ public class Ball extends GameObject {
     int alpha = 255;
     int radius = 10;
     int screenX, screenY;
-
+    private final float MAXSPEED = 3;
+    Random r;
 
     public Ball(int posx, int posy, int screenX, int screenY) {
         this.x = posx;
@@ -31,6 +34,7 @@ public class Ball extends GameObject {
         this.screenX = screenX;
         this.screenY = screenY;
         this.id = "Bolinha";
+        r = new Random();
     }
 
     @Override
@@ -46,8 +50,7 @@ public class Ball extends GameObject {
     public void update(float deltaTime) {
         super.update(deltaTime);
 
-        // TODO: Diferenciar velocidades nos eixos X e Y
-
+        // cria o box da tela e não deixa passar a bolinha da tela.
         this.y += (directionY * speedY * deltaTime);
         this.x += (directionX * speedX * deltaTime);
         if (y >= screenY) {
@@ -57,22 +60,37 @@ public class Ball extends GameObject {
             y = 0;
             directionY = GOING_DOWN;
         }
-
-        // TODO: Verificar colisao com o player e o bot e colocar o codigo abaixo nele.
-
         if (x >= screenX) {
             x = screenX;
             directionX = GOING_LEFT;
         } else if (x <= 0) {
             x = 0;
             directionX = GOING_RIGHT;
+            Player p = (Player) GameResources.getInstance().get("Player");
+            p.addLive(-1);
+            this.reset();
         }
+        // fim dos bounds
 
+        // verifica a colisão com os outros objetos
         for (GameObject g : GameResources.getInstance().gameObjectsList) {
             if (g.id.equals("Bolinha"))
                 continue;
             if (collision(g)) {
+                // Muda a diração
                 toggleX();
+
+                //Adiciona a pontuação
+                if(g instanceof Player && g.id.equals("Player")){
+                    ((Player) g).addPoints((int)((100 * speedX) *.5f + ((100 * speedY) * .5f )));
+                };
+                // sorteia o aumento da velocidade.
+                if(r.nextBoolean()){
+                    speedX += .05;
+                } else {
+                    speedY += .03;
+                }
+
             }
         }
     }
@@ -84,9 +102,6 @@ public class Ball extends GameObject {
                     return true;
                 }
             }
-//            if( this.x  >= (target.x - target.width * .5) && (this.x <= (target.x + target.width * .5 ))){
-//                return true;
-//            }
         } else if (target.id.equals("Player")) {
             if (this.x < target.x + target.width * .5) {
                 if (this.y >= target.y - target.height * .5 && this.y <= target.y + target.height) {
@@ -100,11 +115,33 @@ public class Ball extends GameObject {
 
     private void toggleX() {
         if (directionX == GOING_RIGHT) {
-            this.x -= radius * 3;
+            // arruma a posicao para que nao nao ocorra erros em altas velocidadaes
+            this.x -= radius * 5;
             directionX = GOING_LEFT;
         } else {
-            this.x += radius * 3;
+            // arruma a posicao para que nao nao ocorra erros em altas velocidadaes
+            this.x += radius * 5;
             directionX = GOING_RIGHT;
+        }
+    }
+
+    private void reset(){
+        this.speedY = .5f;
+        this.speedX = .5f;
+        this.x = screenX * .5f;
+        this.y = screenX * .5f;
+    }
+
+    private void addSpeedX(float n){
+        this.speedX += n;
+        if(this.speedX > MAXSPEED){
+            this.speedX = MAXSPEED;
+        }
+    }
+    private void addSpeedY(float n){
+        this.speedY += n;
+        if(this.speedY > MAXSPEED){
+            this.speedY = MAXSPEED;
         }
     }
 

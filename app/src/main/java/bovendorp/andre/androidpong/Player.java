@@ -11,7 +11,11 @@ import android.graphics.Paint;
 public class Player extends GameObject {
     int alpha = 255;
     int color;
-    public Player(int posx, int posy){
+    int points = 0;
+    int live;
+
+    public Player(int posx, int posy, int live){
+        this.live = live;
         x = posx;
         y = posy;
         height = 100;
@@ -42,5 +46,18 @@ public class Player extends GameObject {
         if(y <= 0){
             y = 0;
         }
+    }
+    public void addPoints(int n){
+        points += n;
+    }
+    public void addLive(int n){
+        live += n;
+        if(live < 1){
+            // termina o jogo;
+        }
+    }
+
+    public void setPoints(int n){
+        points = n;
     }
 }

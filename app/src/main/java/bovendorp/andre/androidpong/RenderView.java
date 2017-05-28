@@ -6,10 +6,6 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
-/**
- * Created by developer on 17/04/17.
- */
-
 public class RenderView extends View {
     Paint paint = new Paint();
     Player player1 = null;
@@ -21,15 +17,13 @@ public class RenderView extends View {
     public RenderView(Context context){
         super(context);
         startTime = System.nanoTime();
-
-
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
         if(player1 == null){
-            player1 = new Player(100,getHeight()/2);
+            player1 = new Player(100,getHeight()/2, 3);
             GameResources.getInstance().addObject(player1);
         }
         if(bolinha == null){
