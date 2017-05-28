@@ -1,12 +1,12 @@
 package bovendorp.andre.androidpong;
 
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.media.MediaPlayer;
 
 import java.util.Random;
+
+import bovendorp.andre.androidpong.game.RenderView;
 
 /**
  * Created by developer on 17/04/17.

@@ -9,14 +9,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".game.MainActivity"
             android:screenOrientation="landscape">
         </activity>
         <activity
             android:name=".gameOver.GameOver"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape">
+        </activity>
         <activity
-            android:name=".Menu.Menu"
+            android:name=".menu.Menu"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

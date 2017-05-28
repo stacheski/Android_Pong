@@ -1,11 +1,10 @@
 package bovendorp.andre.androidpong;
 
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import bovendorp.andre.androidpong.gameOver.GameOver;
+import bovendorp.andre.androidpong.game.RenderView;
 
 /**
  * Created by developer on 17/04/17.
@@ -15,6 +14,7 @@ public class Player extends GameObject {
     int alpha = 255;
     int color;
     int points = 0;
+    public static int spoints = 0;
     int live;
 
     public Player(int posx, int posy){
@@ -59,6 +59,7 @@ public class Player extends GameObject {
     }
     public void addPoints(int n){
         points += n;
+        spoints += n;
     }
     public void addLive(int n){
         live += n;

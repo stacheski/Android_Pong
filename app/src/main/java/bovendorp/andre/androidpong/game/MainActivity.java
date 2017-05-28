@@ -1,4 +1,4 @@
-package bovendorp.andre.androidpong;;
+package bovendorp.andre.androidpong.game;;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

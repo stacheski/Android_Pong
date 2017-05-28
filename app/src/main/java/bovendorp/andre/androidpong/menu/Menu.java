@@ -1,11 +1,8 @@
-package bovendorp.andre.androidpong.Menu;
+package bovendorp.andre.androidpong.menu;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-
-import bovendorp.andre.androidpong.R;
-import bovendorp.andre.androidpong.RenderView;
 
 public class Menu extends AppCompatActivity {
 

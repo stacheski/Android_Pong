@@ -2,34 +2,35 @@ package bovendorp.andre.androidpong.gameOver;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
-/**
- * Created by dehzo on 28/05/2017.
- */
+import bovendorp.andre.androidpong.Player;
 
 public class GameOverRenderView extends View {
     Paint paint;
-    float startTime;
 
     public GameOverRenderView(Context context) {
         super(context);
         paint = new Paint();
-        startTime = System.nanoTime();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        float deltaTime = (System.nanoTime() - startTime) / 1000000.0f;
-        startTime = System.nanoTime();
-
-        canvas.drawRGB(200, 200, 200);
-        paint.setTextSize(100);
-        canvas.drawText("GAME OVER!", (getWidth() / 3) * 2, getHeight() / 2, paint);
+        canvas.drawRGB(0, 0, 0);
+        paint.setTextSize(150);
+        paint.setColor(Color.WHITE);
+        canvas.drawText("GAME OVER!", (getWidth() / 6), getHeight() / 2, paint);
+        paint.setTextSize(40);
+        canvas.drawText("Points: " + Player.spoints, getWidth()/2 - 120, getHeight()/3 * 2, paint);
         invalidate();
+    }
 
+    @Override
+    public boolean callOnClick() {
+        return super.callOnClick();
     }
 }

@@ -1,4 +1,4 @@
-package bovendorp.andre.androidpong;
+package bovendorp.andre.androidpong.game;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,12 @@ import android.media.MediaPlayer;
 import android.view.MotionEvent;
 import android.view.View;
 
+import bovendorp.andre.androidpong.Ball;
+import bovendorp.andre.androidpong.Bot;
+import bovendorp.andre.androidpong.GameResources;
+import bovendorp.andre.androidpong.Life;
+import bovendorp.andre.androidpong.Player;
+import bovendorp.andre.androidpong.R;
 import bovendorp.andre.androidpong.gameOver.GameOver;
 
 public class RenderView extends View {
