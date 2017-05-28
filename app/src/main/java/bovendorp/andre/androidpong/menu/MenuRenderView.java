@@ -14,13 +14,11 @@ import bovendorp.andre.androidpong.game.MainActivity;
 public class MenuRenderView extends View {
     Paint paint;
     private Intent intent;
-    GestureDetector gestureDetector;
 
     public MenuRenderView(Context context) {
         super(context);
-        gestureDetector = new GestureDetector(context, new MenuRenderView.GestureListener());
         paint = new Paint();
-        intent = new Intent(context, MainActivity.class);
+        intent = new Intent(this.getContext(), MainActivity.class);
     }
 
     @Override
@@ -38,11 +36,12 @@ public class MenuRenderView extends View {
         invalidate();
     }
 
-    private final class GestureListener extends GestureDetector.SimpleOnGestureListener {
-        @Override
-        public boolean onSingleTapConfirmed(MotionEvent e) {
-            getContext().startActivity(intent);
-            return true;
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_MOVE) {
+           getContext().startActivity(intent);
         }
+        return true;
     }
+
 }

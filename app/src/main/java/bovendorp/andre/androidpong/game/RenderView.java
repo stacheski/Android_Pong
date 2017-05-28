@@ -72,6 +72,7 @@ public class RenderView extends View {
         if(gameOver){
             mp.stop();
             getContext().startActivity(intent);
+            return;
         }
         float deltaTime = (System.nanoTime() - startTime) / 1000000.0f;
         startTime = System.nanoTime();
