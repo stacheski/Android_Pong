@@ -1,0 +1,1 @@
+O objetivo do Android Pong é fazer o maior número de pontos possíveis. Só que para isso você deverá rebater a bolinha sempre, como você jogará sempre contra um bot que nunca vai errar, você ganha pontos assim que conseguir rebater a bolinha. Tem no total 3 vidas.
