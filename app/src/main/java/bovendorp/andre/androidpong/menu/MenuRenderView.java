@@ -14,9 +14,11 @@ import bovendorp.andre.androidpong.game.MainActivity;
 public class MenuRenderView extends View {
     Paint paint;
     private Intent intent;
+    GestureDetector gestureDetector;
 
     public MenuRenderView(Context context) {
         super(context);
+        gestureDetector = new GestureDetector(context, new MenuRenderView.GestureListener());
         paint = new Paint();
         intent = new Intent(context, MainActivity.class);
     }
@@ -28,9 +30,11 @@ public class MenuRenderView extends View {
         canvas.drawRGB(0,0,0);
         paint.setColor(Color.WHITE);
         paint.setTextSize(30);
-        canvas.drawText("Menu", 0,0, paint);
-        paint.setTextSize(100);
-        canvas.drawText("START", (getWidth() * 3) /2, getHeight()/2, paint);
+        canvas.drawText("Menu", 100,100, paint);
+        paint.setTextSize(150);
+        int height = getHeight()/2;
+        int width = getWidth() /3;
+        canvas.drawText("START", width, height, paint);
         invalidate();
     }
 

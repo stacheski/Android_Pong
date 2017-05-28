@@ -28,9 +28,4 @@ public class GameOverRenderView extends View {
         canvas.drawText("Points: " + Player.spoints, getWidth()/2 - 120, getHeight()/3 * 2, paint);
         invalidate();
     }
-
-    @Override
-    public boolean callOnClick() {
-        return super.callOnClick();
-    }
 }
