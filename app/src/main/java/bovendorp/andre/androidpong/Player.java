@@ -17,6 +17,7 @@ public class Player extends GameObject {
         height = 100;
         width = 30;
         color = Color.argb(alpha,0,0,0);
+        this.id = "Player";
     }
 
     @Override

@@ -20,5 +20,6 @@ public class Bot extends Player {
     public void update(float deltaTime) {
         super.update(deltaTime);
         this.y = reference.y;
+        this.id = "Bot";
     }
 }
