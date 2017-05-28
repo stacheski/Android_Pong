@@ -17,13 +17,9 @@ public class RenderView extends View {
     Ball bolinha = null;
 
     float startTime;
-    Explosao explosao;
 
     public RenderView(Context context){
         super(context);
-        explosao = new Explosao();
-
-        GameResources.getInstance().addObject(explosao);
         startTime = System.nanoTime();
 
 
