@@ -19,16 +19,10 @@ public class GameResources {
     private GameResources() {
     }
     public List<GameObject> gameObjectsList = new ArrayList<>();
+    private List<GameObject> gameObjectsList2 = new ArrayList<>();
 
     public void addObject(GameObject obj){
-        for (int i =0; i < gameObjectsList.size(); i++){
-            GameObject obj2 = gameObjectsList.get(i);
-            if(obj.layer <= obj.layer){
-                gameObjectsList.add(i, obj);
-                return;
-            }
-        }
-        gameObjectsList.add(obj);
+        gameObjectsList2.add(obj);
     }
 
     public GameObject get(String s){
@@ -40,14 +34,22 @@ public class GameResources {
         return null;
     }
 
-    public void removeObjject(GameObject obj){
-        gameObjectsList.remove(obj);
+    public void removeObject(GameObject obj){
+        gameObjectsList2.remove(obj);
     }
 
     public void updateAndDraw(float deltaTime, Canvas canvas, Paint paint){
         for (GameObject obj: gameObjectsList){
             obj.update(deltaTime);
             obj.draw(canvas, paint);
+        }
+    }
+
+    public void swap(){
+        // double buffer pra poder deletar sem problemas
+        this.gameObjectsList.clear();
+        for(GameObject g: gameObjectsList2){
+            this.gameObjectsList.add(g);
         }
     }
 }

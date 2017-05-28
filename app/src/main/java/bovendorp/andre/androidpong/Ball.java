@@ -73,6 +73,7 @@ public class Ball extends GameObject {
             // reseta o jogo" para a bolinha no centro
             this.reset();
 
+            return;
 
         }
         // fim dos bounds
@@ -97,7 +98,7 @@ public class Ball extends GameObject {
                 if (r.nextBoolean()) {
                     this.addSpeedX(.05f);
                 } else {
-                    addSpeedY(.03f);
+                    this.addSpeedY(.03f);
                 }
 
             }
@@ -157,13 +158,12 @@ public class Ball extends GameObject {
 
     private void removeLife(){
         Player p = (Player) GameResources.getInstance().get("Player");
-        p.addLive(-1);
         if(p.getLives() > 0){
-            String obj = "Life" + (p.getLives() - 1);
+            String obj = "Life" + (p.getLives());
             GameObject g = GameResources.getInstance().get(obj);
-           // GameResources.getInstance().gameObjectsList.remove(g);
-            ((Life)g).setColor(Color.rgb(200,200,200));
+            GameResources.getInstance().removeObject(g);
         }
+        p.addLive(-1);
     }
 
 }

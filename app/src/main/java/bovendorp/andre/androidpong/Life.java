@@ -21,11 +21,16 @@ public class Life extends GameObject {
 
     @Override
     public void draw(Canvas canvas, Paint paint) {
-        super.draw(canvas, paint);
         paint.setColor(color);
         canvas.drawCircle(x, y, radius, paint);
         paint.reset();
     }
+
+    @Override
+    public void update(float deltaTime) {
+        super.update(deltaTime);
+    }
+
     public void setAlpha(int n){
         this.alpha = n;
     }

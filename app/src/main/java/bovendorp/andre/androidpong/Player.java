@@ -14,8 +14,8 @@ public class Player extends GameObject {
     int points = 0;
     int live;
 
-    public Player(int posx, int posy, int live){
-        this.live = live;
+    public Player(int posx, int posy){
+        this.live = 3;
         x = posx;
         y = posy;
         height = 100;
@@ -59,7 +59,7 @@ public class Player extends GameObject {
     }
     public void addLive(int n){
         live += n;
-        if(live < 1){
+        if(live < 0){
             // termina o jogo;
         }
     }
