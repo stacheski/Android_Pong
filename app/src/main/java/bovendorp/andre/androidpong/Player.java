@@ -1,8 +1,11 @@
 package bovendorp.andre.androidpong;
 
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+
+import bovendorp.andre.androidpong.gameOver.GameOver;
 
 /**
  * Created by developer on 17/04/17.
@@ -60,7 +63,7 @@ public class Player extends GameObject {
     public void addLive(int n){
         live += n;
         if(live < 0){
-            // termina o jogo;
+            RenderView.gameOver = true;
         }
     }
 

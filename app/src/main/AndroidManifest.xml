@@ -11,6 +11,13 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".gameOver.GameOver"
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".Menu.Menu"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

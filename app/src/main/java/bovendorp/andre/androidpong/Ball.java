@@ -1,5 +1,6 @@
 package bovendorp.andre.androidpong;
 
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -116,7 +117,6 @@ public class Ball extends GameObject {
             if (this.x < target.x + target.width * .5) {
                 if (this.y >= target.y - target.height * .5 && this.y <= target.y + target.height) {
                     return true;
-
                 }
             }
         }

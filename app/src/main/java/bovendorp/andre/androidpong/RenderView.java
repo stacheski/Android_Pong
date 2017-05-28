@@ -1,11 +1,14 @@
 package bovendorp.andre.androidpong;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.media.MediaPlayer;
 import android.view.MotionEvent;
 import android.view.View;
+
+import bovendorp.andre.androidpong.gameOver.GameOver;
 
 public class RenderView extends View {
     Paint paint = new Paint();
@@ -16,19 +19,21 @@ public class RenderView extends View {
     Life l2 = null;
     Life l3 = null;
     public static MediaPlayer mp;
+    private Intent intent;
+    public static boolean gameOver = false;
 
     float startTime;
 
     public RenderView(Context context) {
         super(context);
         startTime = System.nanoTime();
+        intent = new Intent(getContext(), GameOver.class);
+        mp = MediaPlayer.create(getContext(), R.raw.toc);
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        mp = MediaPlayer.create(getContext(), R.raw.toc);
-
         if (player1 == null) {
             player1 = new Player(100, getHeight() / 2);
             GameResources.getInstance().addObject(player1);
@@ -58,6 +63,10 @@ public class RenderView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        if(gameOver){
+            mp.stop();
+            getContext().startActivity(intent);
+        }
         float deltaTime = (System.nanoTime() - startTime) / 1000000.0f;
         startTime = System.nanoTime();
 
