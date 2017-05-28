@@ -38,6 +38,13 @@ public class Player extends GameObject {
         super.update(deltaTime);
     }
 
+    public int getLives(){
+        return this.live;
+    }
+    public int getPoints(){
+        return this.points;
+    }
+
     public void setPosition(int pos, int height){
         y = pos;
         if(y >= height){

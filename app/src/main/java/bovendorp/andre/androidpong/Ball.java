@@ -3,6 +3,7 @@ package bovendorp.andre.androidpong;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.MediaPlayer;
 
 import java.util.Random;
 
@@ -66,9 +67,13 @@ public class Ball extends GameObject {
         } else if (x <= 0) {
             x = 0;
             directionX = GOING_RIGHT;
-            Player p = (Player) GameResources.getInstance().get("Player");
-            p.addLive(-1);
+            // caso bata na parede atras do player
+            this.removeLife();
+
+            // reseta o jogo" para a bolinha no centro
             this.reset();
+
+
         }
         // fim dos bounds
 
@@ -77,18 +82,22 @@ public class Ball extends GameObject {
             if (g.id.equals("Bolinha"))
                 continue;
             if (collision(g)) {
+                // toca o som
+                RenderView.mp.start();
+
                 // Muda a diração
                 toggleX();
 
                 //Adiciona a pontuação
-                if(g instanceof Player && g.id.equals("Player")){
-                    ((Player) g).addPoints((int)((100 * speedX) *.5f + ((100 * speedY) * .5f )));
-                };
+                if (g instanceof Player && g.id.equals("Player")) {
+                    ((Player) g).addPoints((int) ((100 * speedX) * .5f + ((100 * speedY) * .5f)));
+                }
+
                 // sorteia o aumento da velocidade.
-                if(r.nextBoolean()){
-                    speedX += .05;
+                if (r.nextBoolean()) {
+                    this.addSpeedX(.05f);
                 } else {
-                    speedY += .03;
+                    addSpeedY(.03f);
                 }
 
             }
@@ -125,23 +134,35 @@ public class Ball extends GameObject {
         }
     }
 
-    private void reset(){
+    private void reset() {
         this.speedY = .5f;
         this.speedX = .5f;
         this.x = screenX * .5f;
         this.y = screenX * .5f;
     }
 
-    private void addSpeedX(float n){
+    private void addSpeedX(float n) {
         this.speedX += n;
-        if(this.speedX > MAXSPEED){
+        if (this.speedX > MAXSPEED) {
             this.speedX = MAXSPEED;
         }
     }
-    private void addSpeedY(float n){
+
+    private void addSpeedY(float n) {
         this.speedY += n;
-        if(this.speedY > MAXSPEED){
+        if (this.speedY > MAXSPEED) {
             this.speedY = MAXSPEED;
+        }
+    }
+
+    private void removeLife(){
+        Player p = (Player) GameResources.getInstance().get("Player");
+        p.addLive(-1);
+        if(p.getLives() > 0){
+            String obj = "Life" + (p.getLives() - 1);
+            GameObject g = GameResources.getInstance().get(obj);
+           // GameResources.getInstance().gameObjectsList.remove(g);
+            ((Life)g).setColor(Color.rgb(200,200,200));
         }
     }
 
